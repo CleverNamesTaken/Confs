@@ -24,8 +24,9 @@ vim.api.nvim_set_keymap(
 )
 
 function ToggleToc()
+  vim.g.NoteBufNo = vim.fn.bufnr()
   if vim.b.toc_closed or vim.b.toc_closed == nil then
-    vim.cmd("wincmd l")
+    vim.cmd("buffer " .. vim.g.NoteBufNo )
     vim.cmd("Toc")
     vim.cmd("vertical resize 60")
     vim.b.toc_closed = false
