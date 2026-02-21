@@ -8,41 +8,47 @@
 
 
 apt update -y
-# should be running this from ~/gits/Confs/
 
-cd ~/gits/Confs/
-git pull
-cd ~/gits/ask/
-git pull
-cd ~/gits/Mousetrap/
-git pull
-cd ~/gits/pizzachit/
-git pull
+#Sorry vim.  I hate you vimscript.
+apt purge vim -y
+apt install jc jq yq netcat-traditional neovim golang-go -y
 
-cd ~/gits/Confs/
-chmod +x ./prepare.sh
 
+
+pushd ../Ask/
+git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git pull
+popd
+pushd ../Mousetrap/
+git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git pull
+popd
+pushd ../pizza_chit.nvim/
+git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git pull
+popd
 
 cp tmux.conf /etc
 mkdir -p ~/.config/nvim
 cp init.lua ~/.config/nvim/
-cd ~/gits/Mousetrap
+
+mkdir -p ~/.config/ask
+cp ask.yaml ~/.config/ask/config.yaml
+mkdir -p /tmp/snippets
+
+pushd ../Mousetrap/
 bash *sh
-cd ~/gits/ask
+popd
+pushd ../Ask/
 mkdir -p ~/gits/Confs/all/
-bash *sh
-ask --render-all
-cd ~/gits/pizzachit/
-bash *sh
+go build
+mv ask /usr/bin/
+chmod +x /usr/bin/
+ask render ultisnips
+popd
 
 git clone https://github.com/SirVer/ultisnips ~/.config/nvim/ultisnips/
-
-sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000
 chsh root -s $(command -v bash)
-
-
-apt purge vim
-apt install jc jq yq netcat-traditional -y
 
 #custom jq function for json to yaml
 
@@ -51,10 +57,6 @@ echo ZGVmIHlhbWxpZnkyOgogICAgKG9iamVjdHMgfCB0b19lbnRyaWVzIHwgKG1hcCgua2V5IHwgbGV
 
 cd ~/.config/nvim
 git clone https://github.com/preservim/vim-markdown.git
+
 printf "vim.opt.runtimepath:append('~/.config/nvim/vim-markdown/')\n" >> ~/.config/nvim/init.lua
-
-vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000
-
-mkdir -p /root/work
-cp /mnt/hgfs/Documents/info.yaml /root/work
 echo "Close this terminal and restart"

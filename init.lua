@@ -11,7 +11,7 @@ vim.api.nvim_set_keymap(
 	-- ULTISNIPS STUFF
 vim.opt.runtimepath:append('~/.config/nvim/ultisnips/')
 vim.opt.runtimepath:append('~/.config/nvim/vim-markdown/')
-vim.g.UltiSnipsSnippetDirectories = {'~/gits/Confs'}
+vim.g.UltiSnipsSnippetDirectories = {'/tmp/snippets'}
 vim.g.UltiSnipsListSnippets="<F2>"
 
   -- MARKDOWN PLUGIN

@@ -1,0 +1,5 @@
+#This yaml file was created through a quick config.  Edit at your own risk or use ask create config to create a new config file
+
+sqlFile: /mnt/hgfs/kali/.config/ask/ask.db
+ingest_dir: /tmp/raw_snippets
+outputdir: ~/tmp/snippets
