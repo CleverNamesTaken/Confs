@@ -11,9 +11,9 @@ apt update -y
 
 #Sorry vim.  I hate you vimscript.
 apt purge vim -y
-apt install jc jq yq netcat-traditional neovim golang-go -y
-
-
+apt install -y jc jq yq netcat-traditional neovim golang-go pipx git
+pipx install git+https://github.com/Pennyw0rth/NetExec
+rm -f /root/.nxc/workspaces/default/rdp.db
 
 pushd ../Ask/
 git remote set-url origin https://github.com/CleverNamesTaken/Ask
@@ -44,6 +44,7 @@ mkdir -p ~/gits/Confs/all/
 go build
 mv ask /usr/bin/
 chmod +x /usr/bin/
+mkdir -p /tmp/snippets/all
 ask render ultisnips
 popd
 

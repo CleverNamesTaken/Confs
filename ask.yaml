@@ -2,4 +2,4 @@
 
 sqlFile: /mnt/hgfs/kali/.config/ask/ask.db
 ingest_dir: /tmp/raw_snippets
-outputdir: ~/tmp/snippets
+outputdir: /tmp/snippets/all
