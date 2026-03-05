@@ -10,21 +10,23 @@
 apt update -y
 
 #Sorry vim.  I hate you vimscript.
-apt purge vim -y
+apt purge vim netexec -y
 apt install -y jc jq yq netcat-traditional neovim golang-go pipx git
 pipx install git+https://github.com/Pennyw0rth/NetExec
+echo 'export PATH=$PATH:~/.local/bin/ >> ~/.bashrc'
+export PATH=$PATH:~/.local/bin
 rm -f /root/.nxc/workspaces/default/rdp.db
 
 pushd ../Ask/
-git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git remote set-url origin git@github.com/CleverNamesTaken/Ask
 git pull
 popd
 pushd ../Mousetrap/
-git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git remote set-url origin git@github.com/CleverNamesTaken/Mousetrap
 git pull
 popd
 pushd ../pizza_chit.nvim/
-git remote set-url origin https://github.com/CleverNamesTaken/Ask
+git remote set-url origin git@github.com/CleverNamesTaken/pizza_chit.nvim
 git pull
 popd
 
